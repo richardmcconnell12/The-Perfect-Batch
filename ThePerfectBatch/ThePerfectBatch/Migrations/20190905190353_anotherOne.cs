@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ThePerfectBatch.Migrations
 {
-    public partial class initial : Migration
+    public partial class anotherOne : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -190,9 +190,10 @@ namespace ThePerfectBatch.Migrations
                     RecipeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     RecipeTypeId = table.Column<int>(nullable: false),
-                    UserCreatedId = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false),
-                    ImageURL = table.Column<string>(nullable: true)
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -204,11 +205,40 @@ namespace ThePerfectBatch.Migrations
                         principalColumn: "RecipeTypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Recipe_AspNetUsers_UserCreatedId",
-                        column: x => x.UserCreatedId,
+                        name: "FK_Recipe_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "FirstName", "LastName" },
+                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, "ccbc9b8e-ebf0-417e-88c7-b6d62b5ec6a7", "ApplicationUser", "mr.mcconnell@internet.com", true, false, null, "MR.MCCONNELL@INTERNET.COM", null, "AQAAAAEAACcQAAAAECCC0nKM3OlW9PjAfNI0LLn2GLLyKx7/efWPX/7yHjS0uiRPwZlr3CQqqGSC6QpcuA==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, null, "Ricky", "McConnell" });
+
+            migrationBuilder.InsertData(
+                table: "RecipeType",
+                columns: new[] { "RecipeTypeId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Breakfast" },
+                    { 2, "Brunch" },
+                    { 3, "Lunch" },
+                    { 4, "Dinner" },
+                    { 5, "Desert" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Recipe",
+                columns: new[] { "RecipeId", "DateCreated", "Image", "Name", "RecipeTypeId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2019, 9, 5, 14, 3, 53, 318, DateTimeKind.Local), null, "French Toast", 1, "00000000-ffff-ffff-ffff-ffffffffffff" },
+                    { 2, new DateTime(2019, 9, 5, 14, 3, 53, 321, DateTimeKind.Local), null, "Crepes", 2, "00000000-ffff-ffff-ffff-ffffffffffff" },
+                    { 3, new DateTime(2019, 9, 5, 14, 3, 53, 321, DateTimeKind.Local), null, "Grilled Cheese", 3, "00000000-ffff-ffff-ffff-ffffffffffff" },
+                    { 4, new DateTime(2019, 9, 5, 14, 3, 53, 321, DateTimeKind.Local), null, "Chicken Parmesean", 4, "00000000-ffff-ffff-ffff-ffffffffffff" },
+                    { 5, new DateTime(2019, 9, 5, 14, 3, 53, 321, DateTimeKind.Local), "ThePerfectBatch/wwwroot/images/ChocolateChipCookie.jpg", "Chocolate Chip Cookies", 5, "00000000-ffff-ffff-ffff-ffffffffffff" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -256,9 +286,9 @@ namespace ThePerfectBatch.Migrations
                 column: "RecipeTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recipe_UserCreatedId",
+                name: "IX_Recipe_UserId",
                 table: "Recipe",
-                column: "UserCreatedId");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

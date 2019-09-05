@@ -10,8 +10,8 @@ using ThePerfectBatch.Data;
 namespace ThePerfectBatch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190904182550_initial")]
-    partial class initial
+    [Migration("20190905190353_anotherOne")]
+    partial class anotherOne
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -217,20 +217,30 @@ namespace ThePerfectBatch.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAddOrUpdate();
 
-                    b.Property<string>("ImageURL");
+                    b.Property<string>("Image");
+
+                    b.Property<string>("Name");
 
                     b.Property<int>("RecipeTypeId");
 
-                    b.Property<string>("UserCreatedId")
+                    b.Property<string>("UserId")
                         .IsRequired();
 
                     b.HasKey("RecipeId");
 
                     b.HasIndex("RecipeTypeId");
 
-                    b.HasIndex("UserCreatedId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Recipe");
+
+                    b.HasData(
+                        new { RecipeId = 1, DateCreated = new DateTime(2019, 9, 5, 14, 3, 53, 318, DateTimeKind.Local), Name = "French Toast", RecipeTypeId = 1, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 2, DateCreated = new DateTime(2019, 9, 5, 14, 3, 53, 321, DateTimeKind.Local), Name = "Crepes", RecipeTypeId = 2, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 3, DateCreated = new DateTime(2019, 9, 5, 14, 3, 53, 321, DateTimeKind.Local), Name = "Grilled Cheese", RecipeTypeId = 3, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 4, DateCreated = new DateTime(2019, 9, 5, 14, 3, 53, 321, DateTimeKind.Local), Name = "Chicken Parmesean", RecipeTypeId = 4, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 5, DateCreated = new DateTime(2019, 9, 5, 14, 3, 53, 321, DateTimeKind.Local), Image = "ThePerfectBatch/wwwroot/images/ChocolateChipCookie.jpg", Name = "Chocolate Chip Cookies", RecipeTypeId = 5, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" }
+                    );
                 });
 
             modelBuilder.Entity("ThePerfectBatch.Models.RecipeType", b =>
@@ -245,6 +255,14 @@ namespace ThePerfectBatch.Migrations
                     b.HasKey("RecipeTypeId");
 
                     b.ToTable("RecipeType");
+
+                    b.HasData(
+                        new { RecipeTypeId = 1, Name = "Breakfast" },
+                        new { RecipeTypeId = 2, Name = "Brunch" },
+                        new { RecipeTypeId = 3, Name = "Lunch" },
+                        new { RecipeTypeId = 4, Name = "Dinner" },
+                        new { RecipeTypeId = 5, Name = "Desert" }
+                    );
                 });
 
             modelBuilder.Entity("ThePerfectBatch.Models.ApplicationUser", b =>
@@ -260,6 +278,10 @@ namespace ThePerfectBatch.Migrations
                     b.ToTable("ApplicationUser");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+
+                    b.HasData(
+                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, ConcurrencyStamp = "ccbc9b8e-ebf0-417e-88c7-b6d62b5ec6a7", Email = "mr.mcconnell@internet.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "MR.MCCONNELL@INTERNET.COM", PasswordHash = "AQAAAAEAACcQAAAAECCC0nKM3OlW9PjAfNI0LLn2GLLyKx7/efWPX/7yHjS0uiRPwZlr3CQqqGSC6QpcuA==", PhoneNumberConfirmed = false, SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577", TwoFactorEnabled = false, FirstName = "Ricky", LastName = "McConnell" }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -314,9 +336,9 @@ namespace ThePerfectBatch.Migrations
                         .HasForeignKey("RecipeTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ThePerfectBatch.Models.ApplicationUser", "UserCreated")
+                    b.HasOne("ThePerfectBatch.Models.ApplicationUser", "User")
                         .WithMany("Recipes")
-                        .HasForeignKey("UserCreatedId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

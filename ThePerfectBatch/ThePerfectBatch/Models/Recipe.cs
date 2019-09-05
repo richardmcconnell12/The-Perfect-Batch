@@ -16,15 +16,21 @@ namespace ThePerfectBatch.Models
         [Display(Name = "Recipe Type")]
         public int RecipeTypeId { get; set; }
 
-        [Required]
-        public ApplicationUser UserCreated { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
+        public string UserId { get; set; }
+        
+        public virtual ApplicationUser User { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime DateCreated { get; set; }
 
         [Display(Name = "Image")]
-        public string ImageURL { get; set; }
+        public string Image { get; set; }
+
+        public virtual ICollection<Ingredients> Ingredients { get; set; }
     }
 }
