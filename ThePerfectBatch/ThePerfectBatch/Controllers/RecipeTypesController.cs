@@ -22,7 +22,9 @@ namespace ThePerfectBatch.Controllers
         // GET: RecipeTypes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RecipeType.ToListAsync());
+            var TypesWithRecipeName = _context.RecipeType
+                .Include(r => r.Recipes);
+            return View(await TypesWithRecipeName.ToListAsync());
         }
 
         // GET: RecipeTypes/Details/5

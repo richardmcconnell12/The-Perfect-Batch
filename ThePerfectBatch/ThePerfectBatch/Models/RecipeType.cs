@@ -15,6 +15,7 @@ namespace ThePerfectBatch.Models
         [Required]
         public string Name { get; set; }
 
+        [Display(Name = "Meal")]
         public ICollection<Recipe> Recipes { get; set; }
     }
 }
