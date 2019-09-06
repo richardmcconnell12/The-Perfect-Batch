@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ThePerfectBatch.Models.Ingredients>
+﻿@model IEnumerable<ThePerfectBatch.Models.Ingredient>
 
 @{
     ViewData["Title"] = "Index";
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IngredientsId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IngredientsId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IngredientsId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IngredientId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IngredientId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IngredientId">Delete</a>
             </td>
         </tr>
 }

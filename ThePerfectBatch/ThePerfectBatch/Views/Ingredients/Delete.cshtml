@@ -1,4 +1,4 @@
-﻿@model ThePerfectBatch.Models.Ingredients
+﻿@model ThePerfectBatch.Models.Ingredient
 
 @{
     ViewData["Title"] = "Delete";
@@ -26,7 +26,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="IngredientsId" />
+        <input type="hidden" asp-for="IngredientId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>
