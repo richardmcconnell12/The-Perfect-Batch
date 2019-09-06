@@ -35,14 +35,15 @@ namespace ThePerfectBatch.Controllers
                 return NotFound();
             }
 
-            var recipeType = await _context.RecipeType
+            var TypesWithRecipeName = await _context.RecipeType
+                .Include(r => r.Recipes)
                 .FirstOrDefaultAsync(m => m.RecipeTypeId == id);
-            if (recipeType == null)
+            if (TypesWithRecipeName == null)
             {
                 return NotFound();
             }
 
-            return View(recipeType);
+            return View(TypesWithRecipeName);
         }
 
         // GET: RecipeTypes/Create

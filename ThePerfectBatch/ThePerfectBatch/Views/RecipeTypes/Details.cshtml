@@ -16,6 +16,15 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Recipes)
+        </dt>
+        @foreach (var recipe in Model.Recipes)
+                {
+                    <dd>
+                        <a asp-area="" asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.RecipeId">@(recipe.Name)</a>
+                    </dd>
+                }
     </dl>
 </div>
 <div>
