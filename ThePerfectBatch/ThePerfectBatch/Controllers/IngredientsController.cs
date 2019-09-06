@@ -34,7 +34,7 @@ namespace ThePerfectBatch.Controllers
             }
 
             var ingredients = await _context.Ingredients
-                .FirstOrDefaultAsync(m => m.IngredientsId == id);
+                .FirstOrDefaultAsync(m => m.IngredientId == id);
             if (ingredients == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace ThePerfectBatch.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IngredientsId,Name,Quantity")] Ingredients ingredients)
+        public async Task<IActionResult> Create([Bind("IngredientsId,Name,Quantity")] Ingredient ingredients)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace ThePerfectBatch.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IngredientsId,Name,Quantity")] Ingredients ingredients)
+        public async Task<IActionResult> Edit(int id, [Bind("IngredientsId,Name,Quantity")] Ingredient ingredients)
         {
-            if (id != ingredients.IngredientsId)
+            if (id != ingredients.IngredientId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ThePerfectBatch.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!IngredientsExists(ingredients.IngredientsId))
+                    if (!IngredientsExists(ingredients.IngredientId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ThePerfectBatch.Controllers
             }
 
             var ingredients = await _context.Ingredients
-                .FirstOrDefaultAsync(m => m.IngredientsId == id);
+                .FirstOrDefaultAsync(m => m.IngredientId == id);
             if (ingredients == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace ThePerfectBatch.Controllers
 
         private bool IngredientsExists(int id)
         {
-            return _context.Ingredients.Any(e => e.IngredientsId == id);
+            return _context.Ingredients.Any(e => e.IngredientId == id);
         }
     }
 }

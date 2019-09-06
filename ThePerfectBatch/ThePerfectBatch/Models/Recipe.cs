@@ -31,6 +31,6 @@ namespace ThePerfectBatch.Models
         [Display(Name = "Image")]
         public string Image { get; set; }
 
-        public virtual ICollection<Ingredients> Ingredients { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
     }
 }

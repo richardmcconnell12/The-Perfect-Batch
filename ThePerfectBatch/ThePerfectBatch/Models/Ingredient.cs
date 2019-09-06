@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ThePerfectBatch.Models
 {
-    public class Ingredients
+    public class Ingredient
     {
         [Display(Name = "Id")]
-        public int IngredientsId { get; set; }
+        public int IngredientId { get; set; }
+
+        public int RecipeId { get; set; }
 
         [Required]
         public string Name { get; set; }
