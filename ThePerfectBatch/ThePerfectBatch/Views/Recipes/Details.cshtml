@@ -17,6 +17,16 @@
             @Html.DisplayFor(model => model.RecipeTypeId)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Ingredients)
+        </dt>
+        @foreach (var ing in Model.Ingredients)
+        {
+            <dd>
+                @(ing.Quantity)
+                @(ing.Name)
+            </dd>
+        }
+        <dt>
             @Html.DisplayNameFor(model => model.DateCreated)
         </dt>
         <dd>
@@ -26,7 +36,13 @@
             @Html.DisplayNameFor(model => model.Image)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img width="100" height="100" src="~/@Url.Content(Model.Image)" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
         </dd>
     </dl>
 </div>

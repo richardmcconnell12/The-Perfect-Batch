@@ -21,6 +21,7 @@ namespace ThePerfectBatch.Models
         [Required]
         public string UserId { get; set; }
         
+        [Display(Name = "Created by")]
         public virtual ApplicationUser User { get; set; }
 
         [Required]
