@@ -6,16 +6,15 @@
 
 <h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipes)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -24,12 +23,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RecipeTypeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RecipeTypeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RecipeTypeId">Delete</a>
-            </td>
-        </tr>
+            
+                @foreach (var recipe in item.Recipes)
+                {
+                    <td>
+                        <a asp-area="" asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.RecipeId">@(recipe.Name)</a>
+                    </td>
+                }
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.RecipeTypeId">Details</a>
+                </td>
+</tr>
 }
     </tbody>
 </table>
