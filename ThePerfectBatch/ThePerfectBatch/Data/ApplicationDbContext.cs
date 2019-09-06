@@ -85,7 +85,8 @@ namespace ThePerfectBatch.Data
                     UserId = user.Id,
                     Name = "Crepes",
                     Image = "images/ChickpeaCrepe.jpg",
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+
                 },
                 new Recipe()
                 {

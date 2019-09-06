@@ -23,7 +23,8 @@ namespace ThePerfectBatch.Controllers
         public async Task<IActionResult> Index()
         {
             var RecipeWithIngredients = _context.Recipe
-                .Include(r => r.Ingredients);
+                .Include(r => r.Ingredients)
+                .Include(u => u.User);
             return View(await RecipeWithIngredients.ToListAsync());
         }
 
@@ -35,14 +36,16 @@ namespace ThePerfectBatch.Controllers
                 return NotFound();
             }
 
-            var recipe = await _context.Recipe
+            var RecipeWithIngredients = await _context.Recipe
+                .Include(r => r.Ingredients)
+                .Include(u => u.User)
                 .FirstOrDefaultAsync(m => m.RecipeId == id);
-            if (recipe == null)
+            if (RecipeWithIngredients == null)
             {
                 return NotFound();
             }
 
-            return View(recipe);
+            return View(RecipeWithIngredients);
         }
 
         // GET: Recipes/Create

@@ -25,6 +25,9 @@
                 @Html.DisplayNameFor(model => model.DateCreated)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Image)
             </th>
             <th></th>
@@ -41,13 +44,16 @@
             </td>
             @foreach (var ing in item.Ingredients)
             {
-            <td>
-                @(ing.Name)
-                @(ing.Quantity)
-            </td>
+                <td>
+                    @(ing.Quantity)
+                    @(ing.Name)
+                </td>
             }
             <td>
                 @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
             </td>
             <td>
                 <img width="50" height="50" src="~/@Url.Content(item.Image)" />
