@@ -1,0 +1,218 @@
+[
+  {
+    "IngredientId": 1,
+    "RecipeId": 1,
+    "Name": "Egg",
+    "Quantity": "1"
+  },
+  {
+    "IngredientId": 2,
+    "RecipeId": 1,
+    "Name": "Vanilla Extract",
+    "Quantity": "1 Tsp"
+  },
+  {
+    "IngredientId": 3,
+    "RecipeId": 1,
+    "Name": "Cinnimon Grounds",
+    "Quantity": "1/2 Tsp"
+  },
+  {
+    "IngredientId": 4,
+    "RecipeId": 1,
+    "Name": "Milk",
+    "Quantity": "1/4 Cup of Milk"
+  },
+  {
+    "IngredientId": 5,
+    "RecipeId": 1,
+    "Name": "Bread",
+    "Quantity": "4 Slices"
+  },
+  {
+    "IngredientId": 6,
+    "RecipeId": 2,
+    "Name": "Chickpea Flour",
+    "Quantity": "1 Cup"
+  },
+  {
+    "IngredientId": 7,
+    "RecipeId": 2,
+    "Name": "Water",
+    "Quantity": "1 and 1/4 Cups"
+  },
+  {
+    "IngredientId": 8,
+    "RecipeId": 2,
+    "Name": "Lemon Juice",
+    "Quantity": "1 Tbsp"
+  },
+  {
+    "IngredientId": 9,
+    "RecipeId": 2,
+    "Name": "Salt",
+    "Quantity": "1/2 Tsp"
+  },
+  {
+    "IngredientId": 10,
+    "RecipeId": 3,
+    "Name": "Bread",
+    "Quantity": "2 Slices"
+  },
+  {
+    "IngredientId": 11,
+    "RecipeId": 3,
+    "Name": "Butter",
+    "Quantity": "1 Tbsp"
+  },
+  {
+    "IngredientId": 12,
+    "RecipeId": 3,
+    "Name": "Cheese of Choice",
+    "Quantity": "2 Slices"
+  },
+  {
+    "IngredientId": 13,
+    "RecipeId": 4,
+    "Name": "Skinless Chicken Breast",
+    "Quantity": "4"
+  },
+  {
+    "IngredientId": 14,
+    "RecipeId": 4,
+    "Name": "Salt and Pepper",
+    "Quantity": "To Taste"
+  },
+  {
+    "IngredientId": 15,
+    "RecipeId": 4,
+    "Name": "Eggs",
+    "Quantity": "2"
+  },
+  {
+    "IngredientId": 16,
+    "RecipeId": 4,
+    "Name": "Bread Crumbs",
+    "Quantity": "1 and 1/4 Cup"
+  },
+  {
+    "IngredientId": 17,
+    "RecipeId": 4,
+    "Name": "Grated Parmesean Cheese",
+    "Quantity": "1/2 Cup"
+  },
+  {
+    "IngredientId": 18,
+    "RecipeId": 4,
+    "Name": "Flour",
+    "Quantity": "2 Tbsp"
+  },
+  {
+    "IngredientId": 19,
+    "RecipeId": 4,
+    "Name": "Olive Oil for Frying",
+    "Quantity": "1 Cup"
+  },
+  {
+    "IngredientId": 20,
+    "RecipeId": 4,
+    "Name": "Tomato Sauce",
+    "Quantity": "1/2 Cup"
+  },
+  {
+    "IngredientId": 21,
+    "RecipeId": 4,
+    "Name": "Cubed Mozzarella",
+    "Quantity": "1/4 Cup"
+  },
+  {
+    "IngredientId": 22,
+    "RecipeId": 4,
+    "Name": "Basil",
+    "Quantity": "1/4 Cup"
+  },
+  {
+    "IngredientId": 23,
+    "RecipeId": 4,
+    "Name": "Provolone Cheese",
+    "Quantity": "1/2 Cup"
+  },
+  {
+    "IngredientId": 24,
+    "RecipeId": 4,
+    "Name": "Grated Parmesean Cheese",
+    "Quantity": "1/2 Cup"
+  },
+  {
+    "IngredientId": 25,
+    "RecipeId": 4,
+    "Name": "Olive Oil",
+    "Quantity": "1 Tbsp"
+  },
+  {
+    "IngredientId": 26,
+    "RecipeId": 5,
+    "Name": "Butter",
+    "Quantity": "1 Cup"
+  },
+  {
+    "IngredientId": 27,
+    "RecipeId": 5,
+    "Name": "White Sugar",
+    "Quantity": "1 Cup"
+  },
+  {
+    "IngredientId": 28,
+    "RecipeId": 5,
+    "Name": "Brown Sugar",
+    "Quantity": "1 Cup"
+  },
+  {
+    "IngredientId": 29,
+    "RecipeId": 5,
+    "Name": "Egg",
+    "Quantity": "2"
+  },
+  {
+    "IngredientId": 30,
+    "RecipeId": 5,
+    "Name": "Vanilla extract",
+    "Quantity": "2 Tsp"
+  },
+  {
+    "IngredientId": 31,
+    "RecipeId": 5,
+    "Name": "Baking Soda",
+    "Quantity": "1 Tsp"
+  },
+  {
+    "IngredientId": 32,
+    "RecipeId": 5,
+    "Name": "Hot Water",
+    "Quantity": "1 Tsp"
+  },
+  {
+    "IngredientId": 33,
+    "RecipeId": 5,
+    "Name": "Salt",
+    "Quantity": "1/2 Tsp"
+  },
+  {
+    "IngredientId": 34,
+    "RecipeId": 5,
+    "Name": "Flour",
+    "Quantity": "3 Cups"
+  },
+  {
+    "IngredientId": 35,
+    "RecipeId": 5,
+    "Name": "Chocolate Chips",
+    "Quantity": "2 Cups"
+  },
+  {
+    "IngredientId": 36,
+    "RecipeId": 5,
+    "Name": "Chopped Walnuts",
+    "Quantity": "1 Cup"
+  }
+]

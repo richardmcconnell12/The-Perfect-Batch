@@ -8,7 +8,7 @@ using ThePerfectBatch.Models;
 
 namespace ThePerfectBatch.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -17,6 +17,7 @@ namespace ThePerfectBatch.Data
         public DbSet<ThePerfectBatch.Models.Recipe> Recipe { get; set; }
         public DbSet<ThePerfectBatch.Models.RecipeType> RecipeType { get; set; }
         public DbSet<ThePerfectBatch.Models.Ingredient> Ingredients { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

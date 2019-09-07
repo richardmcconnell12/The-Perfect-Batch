@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,11 +16,15 @@ namespace ThePerfectBatch.Controllers
     public class RecipesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RecipesController(ApplicationDbContext context)
+        public RecipesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Recipes
         public async Task<IActionResult> Index()
@@ -52,7 +59,6 @@ namespace ThePerfectBatch.Controllers
         public IActionResult Create()
         {
             ViewData["RecipeTypeId"] = new SelectList(_context.RecipeType, "RecipeTypeId", "Name");
-            //ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
             return View();
         }
 
@@ -61,14 +67,33 @@ namespace ThePerfectBatch.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RecipeId,RecipeTypeId,DateCreated,ImageURL")] Recipe recipe)
+        [RequestSizeLimit(5 * 1024 * 1024)]
+        public async Task<IActionResult> Create([Bind("RecipeId,RecipeTypeId,DateCreated,Quantity,Image")] Recipe recipe, IFormFile file)
         {
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(), "wwwroot",
+                "Images", file.FileName);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            ApplicationUser user = await GetCurrentUserAsync();
+            recipe.UserId = user.Id;
+            recipe.Image = "Images/" + file.FileName;
+
+            ModelState.Remove("User");
+            ModelState.Remove("UserId");
             if (ModelState.IsValid)
             {
+                //ApplicationUser user = await GetUserAsync();
+                //recipe.UserId = user.Id;
                 _context.Add(recipe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductTypeId"] = new SelectList(_context.RecipeType, "ProductTypeId", "Label", recipe.RecipeTypeId);
             return View(recipe);
         }
 
@@ -150,6 +175,17 @@ namespace ThePerfectBatch.Controllers
             _context.Recipe.Remove(recipe);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private Task<ApplicationUser> GetUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
+        }
+
+        private async Task<bool> WasCreatedByUser(Recipe recipe)
+        {
+            var user = await GetUserAsync();
+            return recipe.UserId == user.Id;
         }
 
         private bool RecipeExists(int id)
