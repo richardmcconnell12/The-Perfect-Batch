@@ -10,8 +10,8 @@ using ThePerfectBatch.Data;
 namespace ThePerfectBatch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190906152348_ingredientsAdded")]
-    partial class ingredientsAdded
+    [Migration("20190907193948_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,62 +63,6 @@ namespace ThePerfectBatch.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -189,6 +133,67 @@ namespace ThePerfectBatch.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("ThePerfectBatch.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, ConcurrencyStamp = "1e2ca97a-0501-41bf-ab3f-7ad75b339558", Email = "mr.mcconnell@internet.com", EmailConfirmed = true, FirstName = "Ricky", LastName = "McConnell", LockoutEnabled = false, NormalizedEmail = "MR.MCCONNELL@INTERNET.COM", PasswordHash = "AQAAAAEAACcQAAAAEFIAPbCP35psb8rL35M5XbTWPnDdFpc74BeJMwhQh4INslk2yZkV+Rzk5rKjnSjn/A==", PhoneNumberConfirmed = false, SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577", TwoFactorEnabled = false }
+                    );
                 });
 
             modelBuilder.Entity("ThePerfectBatch.Models.Ingredient", b =>
@@ -278,11 +283,11 @@ namespace ThePerfectBatch.Migrations
                     b.ToTable("Recipe");
 
                     b.HasData(
-                        new { RecipeId = 1, DateCreated = new DateTime(2019, 9, 6, 10, 23, 47, 376, DateTimeKind.Local), Image = "images/FrenchToast.jpg", Name = "French Toast", RecipeTypeId = 1, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
-                        new { RecipeId = 2, DateCreated = new DateTime(2019, 9, 6, 10, 23, 47, 380, DateTimeKind.Local), Image = "images/ChickpeaCrepe.jpg", Name = "Crepes", RecipeTypeId = 2, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
-                        new { RecipeId = 3, DateCreated = new DateTime(2019, 9, 6, 10, 23, 47, 380, DateTimeKind.Local), Image = "images/GrilledCheese.jpg", Name = "Grilled Cheese", RecipeTypeId = 3, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
-                        new { RecipeId = 4, DateCreated = new DateTime(2019, 9, 6, 10, 23, 47, 380, DateTimeKind.Local), Image = "images/ChickenParm.jpg", Name = "Chicken Parmesean", RecipeTypeId = 4, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
-                        new { RecipeId = 5, DateCreated = new DateTime(2019, 9, 6, 10, 23, 47, 380, DateTimeKind.Local), Image = "images/ChocolateChipCookie.jpg", Name = "Chocolate Chip Cookies", RecipeTypeId = 5, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" }
+                        new { RecipeId = 1, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 354, DateTimeKind.Local), Image = "images/FrenchToast.jpg", Name = "French Toast", RecipeTypeId = 1, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 2, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 359, DateTimeKind.Local), Image = "images/ChickpeaCrepe.jpg", Name = "Crepes", RecipeTypeId = 2, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 3, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 359, DateTimeKind.Local), Image = "images/GrilledCheese.jpg", Name = "Grilled Cheese", RecipeTypeId = 3, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 4, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 359, DateTimeKind.Local), Image = "images/ChickenParm.jpg", Name = "Chicken Parmesean", RecipeTypeId = 4, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 5, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 359, DateTimeKind.Local), Image = "images/ChocolateChipCookie.jpg", Name = "Chocolate Chip Cookies", RecipeTypeId = 5, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" }
                     );
                 });
 
@@ -308,25 +313,6 @@ namespace ThePerfectBatch.Migrations
                     );
                 });
 
-            modelBuilder.Entity("ThePerfectBatch.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired();
-
-                    b.Property<string>("LastName")
-                        .IsRequired();
-
-                    b.ToTable("ApplicationUser");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-
-                    b.HasData(
-                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, ConcurrencyStamp = "90fa8349-72c8-4b46-9ae8-687f8deefae3", Email = "mr.mcconnell@internet.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "MR.MCCONNELL@INTERNET.COM", PasswordHash = "AQAAAAEAACcQAAAAEBE37eACdCMu5pv/wBPDH5Z3aj8rW8bhgtW+3ATwkw0ZRssctDnxRXlPKBLC8Sn5MA==", PhoneNumberConfirmed = false, SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577", TwoFactorEnabled = false, FirstName = "Ricky", LastName = "McConnell" }
-                    );
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -337,7 +323,7 @@ namespace ThePerfectBatch.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("ThePerfectBatch.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -345,7 +331,7 @@ namespace ThePerfectBatch.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("ThePerfectBatch.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -358,7 +344,7 @@ namespace ThePerfectBatch.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("ThePerfectBatch.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -366,7 +352,7 @@ namespace ThePerfectBatch.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
+                    b.HasOne("ThePerfectBatch.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
