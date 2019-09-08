@@ -10,7 +10,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 @*Recipe Search Bar*@
-<form asp-controller="Recipes" asp-action="RecipeById" method="get">
+<form asp-controller="Recipes" asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
             <input pattern=".{1,}" required title="1 characters minimum" type="text" name="recipe" placeholder="Search Recipes" value="@ViewData["CurrentFilter"]" />

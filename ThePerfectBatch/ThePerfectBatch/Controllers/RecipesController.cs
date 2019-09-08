@@ -27,24 +27,17 @@ namespace ThePerfectBatch.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Recipes
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string recipe)
         {
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                var recipe = from r in _context.Recipe
-                             select r;
-
-                var filteredRecipes = recipe.Where(r => r.Name.Contains(searchString));
-
-                return View(await filteredRecipes.ToListAsync());
-            }
-            else
-            {
                 var RecipeWithIngredients = _context.Recipe
                     .Include(r => r.Ingredients)
-                    .Include(u => u.User);
-                return View(await RecipeWithIngredients.ToListAsync());
+                    .Include(u => u.User).ToList();
+
+            if (!String.IsNullOrEmpty(recipe))
+            {
+                RecipeWithIngredients =  RecipeWithIngredients.Where(r => r.Name.Contains(recipe)).ToList();
             }
+                return View( RecipeWithIngredients);
         }
 
         // GET: Recipes/Details/5

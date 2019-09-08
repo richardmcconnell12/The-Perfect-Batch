@@ -53,7 +53,7 @@ namespace ThePerfectBatch.Controllers
         // GET: Ingredients/Create
         public IActionResult Create()
         {
-            ViewData["RecipeId"] = new SelectList(_context.Recipe, "RecipeId", "Name");
+            ViewData["RecipeId"] = new SelectList(_context.Recipe, "RecipeId", "Name", "Quantity");
             return View();
         }
 
