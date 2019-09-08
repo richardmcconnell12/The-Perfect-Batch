@@ -9,6 +9,15 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@*Recipe Search Bar*@
+<form asp-controller="Recipes" asp-action="RecipeById" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <input pattern=".{1,}" required title="1 characters minimum" type="text" name="recipe" placeholder="Search Recipes" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -34,36 +43,37 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecipeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            @foreach (var ing in item.Ingredients)
-            {
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
-                    @(ing.Quantity)
-                    @(ing.Name)
+                    @Html.DisplayFor(modelItem => item.RecipeId)
                 </td>
-            }
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                <img width="50" height="50" src="~/@Url.Content(item.Image)" />
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RecipeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RecipeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RecipeId">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                @foreach (var ing in item.Ingredients)
+                {
+                    <td>
+                        @(ing.Quantity)
+                        @(ing.Name)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    <img width="50" height="50" src="~/@Url.Content(item.Image)" />
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.RecipeId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.RecipeId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RecipeId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

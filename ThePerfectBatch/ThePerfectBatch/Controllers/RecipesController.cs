@@ -27,12 +27,24 @@ namespace ThePerfectBatch.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Recipes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var RecipeWithIngredients = _context.Recipe
-                .Include(r => r.Ingredients)
-                .Include(u => u.User);
-            return View(await RecipeWithIngredients.ToListAsync());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var recipe = from r in _context.Recipe
+                             select r;
+
+                var filteredRecipes = recipe.Where(r => r.Name.Contains(searchString));
+
+                return View(await filteredRecipes.ToListAsync());
+            }
+            else
+            {
+                var RecipeWithIngredients = _context.Recipe
+                    .Include(r => r.Ingredients)
+                    .Include(u => u.User);
+                return View(await RecipeWithIngredients.ToListAsync());
+            }
         }
 
         // GET: Recipes/Details/5
@@ -72,7 +84,7 @@ namespace ThePerfectBatch.Controllers
         {
             var path = Path.Combine(
                 Directory.GetCurrentDirectory(), "wwwroot",
-                "Images", file.FileName);
+                "images", file.FileName);
 
             using (var stream = new FileStream(path, FileMode.Create))
             {
@@ -81,7 +93,7 @@ namespace ThePerfectBatch.Controllers
 
             ApplicationUser user = await GetCurrentUserAsync();
             recipe.UserId = user.Id;
-            recipe.Image = "Images/" + file.FileName;
+            recipe.Image = "images/" + file.FileName;
 
             ModelState.Remove("User");
             ModelState.Remove("UserId");

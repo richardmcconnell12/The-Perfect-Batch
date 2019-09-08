@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,15 +14,21 @@ namespace ThePerfectBatch.Controllers
     public class IngredientsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public IngredientsController(ApplicationDbContext context)
+        public IngredientsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Ingredients
         public async Task<IActionResult> Index()
         {
+            //var IngredientsWithRecipe = _context.Ingredients
+            //    .Include(r => r.RecipeId);
             return View(await _context.Ingredients.ToListAsync());
         }
 
@@ -46,6 +53,7 @@ namespace ThePerfectBatch.Controllers
         // GET: Ingredients/Create
         public IActionResult Create()
         {
+            ViewData["RecipeId"] = new SelectList(_context.Recipe, "RecipeId", "Name");
             return View();
         }
 
@@ -143,6 +151,11 @@ namespace ThePerfectBatch.Controllers
             _context.Ingredients.Remove(ingredients);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private Task<ApplicationUser> GetUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
         }
 
         private bool IngredientsExists(int id)
