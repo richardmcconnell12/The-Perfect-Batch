@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +38,7 @@ namespace ThePerfectBatch.Controllers
             {
                 RecipeWithIngredients =  RecipeWithIngredients.Where(r => r.Name.Contains(recipe)).ToList();
             }
-                return View( RecipeWithIngredients);
+                return View(RecipeWithIngredients);
         }
 
         // GET: Recipes/Details/5
@@ -59,12 +60,38 @@ namespace ThePerfectBatch.Controllers
 
             return View(RecipeWithIngredients);
         }
-
+        [Authorize]
         // GET: Recipes/Create
         public IActionResult Create()
         {
             ViewData["RecipeTypeId"] = new SelectList(_context.RecipeType, "RecipeTypeId", "Name");
-            return View();
+            var recipe = new Recipe();
+            var ingredient1 = new Ingredient();
+            var ingredient2 = new Ingredient();
+            //var ingredient3 = new Ingredient();
+            //var ingredient4 = new Ingredient();
+            //var ingredient5 = new Ingredient();
+            //var ingredient6 = new Ingredient();
+            //var ingredient7 = new Ingredient();
+            //var ingredient8 = new Ingredient();
+            //var ingredient9 = new Ingredient();
+            //var ingredient10 = new Ingredient();
+
+            var ingredientsList = new List<Ingredient>();
+     
+            ingredientsList.Add(ingredient1);
+            ingredientsList.Add(ingredient2);
+            //ingredientsList.Add(ingredient3);
+            //ingredientsList.Add(ingredient4);
+            //ingredientsList.Add(ingredient5);
+            //ingredientsList.Add(ingredient6);
+            //ingredientsList.Add(ingredient7);
+            //ingredientsList.Add(ingredient8);
+            //ingredientsList.Add(ingredient9);
+            //ingredientsList.Add(ingredient10);
+
+            recipe.Ingredients = ingredientsList; 
+            return View(recipe);
         }
 
         // POST: Recipes/Create
@@ -73,7 +100,7 @@ namespace ThePerfectBatch.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [RequestSizeLimit(5 * 1024 * 1024)]
-        public async Task<IActionResult> Create([Bind("RecipeId,RecipeTypeId,DateCreated,Quantity,Image")] Recipe recipe, IFormFile file)
+        public async Task<IActionResult> Create([Bind("RecipeId,RecipeTypeId,Name,DateCreated,Quantity,Image,Ingredients")] Recipe recipe, IFormFile file)
         {
             var path = Path.Combine(
                 Directory.GetCurrentDirectory(), "wwwroot",
@@ -98,10 +125,10 @@ namespace ThePerfectBatch.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductTypeId"] = new SelectList(_context.RecipeType, "ProductTypeId", "Label", recipe.RecipeTypeId);
+            ViewData["ProductTypeId"] = new SelectList(_context.RecipeType, "RecipeTypeId", "Label", recipe.RecipeTypeId);
             return View(recipe);
         }
-
+        [Authorize]
         // GET: Recipes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -152,7 +179,7 @@ namespace ThePerfectBatch.Controllers
             }
             return View(recipe);
         }
-
+        [Authorize]
         // GET: Recipes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -193,7 +220,7 @@ namespace ThePerfectBatch.Controllers
             return recipe.UserId == user.Id;
         }
 
-        private bool RecipeExists(int id)
+        private bool RecipeExists(int? id)
         {
             return _context.Recipe.Any(e => e.RecipeId == id);
         }

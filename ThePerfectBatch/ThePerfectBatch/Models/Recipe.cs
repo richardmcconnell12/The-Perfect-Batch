@@ -11,7 +11,7 @@ namespace ThePerfectBatch.Models
     {
         [Key]
         [Display(Name = "Id")]
-        public int RecipeId { get; set; }
+        public int? RecipeId { get; set; }
 
         [Display(Name = "Recipe Type")]
         public int RecipeTypeId { get; set; }
@@ -28,11 +28,11 @@ namespace ThePerfectBatch.Models
         [Required]
         [DataType(DataType.Date)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Display(Name = "Date Created")]
         public DateTime DateCreated { get; set; }
 
-        [Display(Name = "Image")]
         public string Image { get; set; }
 
-        public virtual ICollection<Ingredient> Ingredients { get; set; }
+        public virtual List<Ingredient> Ingredients { get; set; }
     }
 }

@@ -35,3 +35,14 @@ body {
         display: none;
     }
 }
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.form-group {
+    flex-basis: 20%;
+}

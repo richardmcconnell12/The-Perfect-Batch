@@ -24,6 +24,9 @@ namespace ThePerfectBatch.Data
             base.OnModelCreating(modelBuilder);
 
             // Intitial user seeding 
+            modelBuilder.Entity<Recipe>()
+                .Property(d => d.DateCreated)
+                .HasDefaultValueSql("getdate()");
 
             ApplicationUser user = new ApplicationUser
             {
