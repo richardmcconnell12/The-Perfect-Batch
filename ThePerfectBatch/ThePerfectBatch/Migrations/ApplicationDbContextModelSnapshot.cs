@@ -190,7 +190,7 @@ namespace ThePerfectBatch.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, ConcurrencyStamp = "1e2ca97a-0501-41bf-ab3f-7ad75b339558", Email = "mr.mcconnell@internet.com", EmailConfirmed = true, FirstName = "Ricky", LastName = "McConnell", LockoutEnabled = false, NormalizedEmail = "MR.MCCONNELL@INTERNET.COM", PasswordHash = "AQAAAAEAACcQAAAAEFIAPbCP35psb8rL35M5XbTWPnDdFpc74BeJMwhQh4INslk2yZkV+Rzk5rKjnSjn/A==", PhoneNumberConfirmed = false, SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577", TwoFactorEnabled = false }
+                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, ConcurrencyStamp = "f0625022-bc02-4422-86d7-7fadd2155b74", Email = "mr.mcconnell@internet.com", EmailConfirmed = true, FirstName = "Ricky", LastName = "McConnell", LockoutEnabled = false, NormalizedEmail = "MR.MCCONNELL@INTERNET.COM", PasswordHash = "AQAAAAEAACcQAAAAEBsSgkvqcGmMf9gPqTVU+qvdfd8O4n3mV4Nt6V7yJ7g9K9V9xV15jln438gWhi7aLQ==", PhoneNumberConfirmed = false, SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577", TwoFactorEnabled = false }
                     );
                 });
 
@@ -256,12 +256,13 @@ namespace ThePerfectBatch.Migrations
 
             modelBuilder.Entity("ThePerfectBatch.Models.Recipe", b =>
                 {
-                    b.Property<int>("RecipeId")
+                    b.Property<int?>("RecipeId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAddOrUpdate();
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Image");
 
@@ -281,11 +282,11 @@ namespace ThePerfectBatch.Migrations
                     b.ToTable("Recipe");
 
                     b.HasData(
-                        new { RecipeId = 1, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 354, DateTimeKind.Local), Image = "images/FrenchToast.jpg", Name = "French Toast", RecipeTypeId = 1, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
-                        new { RecipeId = 2, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 359, DateTimeKind.Local), Image = "images/ChickpeaCrepe.jpg", Name = "Crepes", RecipeTypeId = 2, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
-                        new { RecipeId = 3, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 359, DateTimeKind.Local), Image = "images/GrilledCheese.jpg", Name = "Grilled Cheese", RecipeTypeId = 3, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
-                        new { RecipeId = 4, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 359, DateTimeKind.Local), Image = "images/ChickenParm.jpg", Name = "Chicken Parmesean", RecipeTypeId = 4, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
-                        new { RecipeId = 5, DateCreated = new DateTime(2019, 9, 7, 14, 39, 48, 359, DateTimeKind.Local), Image = "images/ChocolateChipCookie.jpg", Name = "Chocolate Chip Cookies", RecipeTypeId = 5, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" }
+                        new { RecipeId = 1, DateCreated = new DateTime(2019, 9, 9, 14, 43, 17, 406, DateTimeKind.Local), Image = "images/FrenchToast.jpg", Name = "French Toast", RecipeTypeId = 1, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 2, DateCreated = new DateTime(2019, 9, 9, 14, 43, 17, 409, DateTimeKind.Local), Image = "images/ChickpeaCrepe.jpg", Name = "Crepes", RecipeTypeId = 2, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 3, DateCreated = new DateTime(2019, 9, 9, 14, 43, 17, 409, DateTimeKind.Local), Image = "images/GrilledCheese.jpg", Name = "Grilled Cheese", RecipeTypeId = 3, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 4, DateCreated = new DateTime(2019, 9, 9, 14, 43, 17, 409, DateTimeKind.Local), Image = "images/ChickenParm.jpg", Name = "Chicken Parmesean", RecipeTypeId = 4, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" },
+                        new { RecipeId = 5, DateCreated = new DateTime(2019, 9, 9, 14, 43, 17, 409, DateTimeKind.Local), Image = "images/ChocolateChipCookie.jpg", Name = "Chocolate Chip Cookies", RecipeTypeId = 5, UserId = "00000000-ffff-ffff-ffff-ffffffffffff" }
                     );
                 });
 
