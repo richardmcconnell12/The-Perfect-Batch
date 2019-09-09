@@ -52,13 +52,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
+                    <td style="display: flex; flex-direction: column;">
                 @foreach (var ing in item.Ingredients)
                 {
-                    <td style="display: flex; flex-direction: column;">
-                        @(ing.Quantity)
-                        @(ing.Name)
-                    </td>
+                        <ul>
+                            <li>
+                            @(ing.Quantity)
+                            @(ing.Name)
+                            </li>
+                        </ul>
                 }
+                    </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateCreated)
                 </td>
