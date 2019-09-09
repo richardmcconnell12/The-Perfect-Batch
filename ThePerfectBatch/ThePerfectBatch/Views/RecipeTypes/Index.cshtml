@@ -23,13 +23,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            
+            <td style="display: flex; flex-direction: column;">
                 @foreach (var recipe in item.Recipes)
                 {
-                    <td style="display: flex; flex-direction: column;">
-                        <a asp-area="" asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.RecipeId">@(recipe.Name)</a>
-                    </td>
+
+                    <ul>
+                        <li><a asp-area="" asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.RecipeId">@(recipe.Name)</a></li>
+                    </ul>
                 }
+            </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.RecipeTypeId">Details</a>
                 </td>
