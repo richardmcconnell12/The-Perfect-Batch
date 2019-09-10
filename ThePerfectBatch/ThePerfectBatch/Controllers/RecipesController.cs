@@ -125,24 +125,22 @@ namespace ThePerfectBatch.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductTypeId"] = new SelectList(_context.RecipeType, "RecipeTypeId", "Label", recipe.RecipeTypeId);
+            ViewData["RecipeTypeId"] = new SelectList(_context.RecipeType, "RecipeTypeId", "Label", recipe.RecipeTypeId);
             return View(recipe);
         }
         [Authorize]
         // GET: Recipes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            var recipeWithIngredients = await _context.Recipe
+                .Include(r => r.Ingredients)
+                .Include(u => u.User)
+                .FirstOrDefaultAsync(m => m.RecipeId == id);
+            if (recipeWithIngredients == null)
             {
                 return NotFound();
             }
-
-            var recipe = await _context.Recipe.FindAsync(id);
-            if (recipe == null)
-            {
-                return NotFound();
-            }
-            return View(recipe);
+            return View(recipeWithIngredients);
         }
 
         // POST: Recipes/Edit/5
@@ -150,15 +148,18 @@ namespace ThePerfectBatch.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RecipeId,RecipeTypeId,DateCreated,ImageURL")] Recipe recipe)
+        public async Task<IActionResult> Edit(int id, [Bind("RecipeId,RecipeTypeId,Name,DateCreated,Quantity,Image,Ingredients")] Recipe recipe)
         {
             if (id != recipe.RecipeId)
             {
                 return NotFound();
             }
-
+            ModelState.Remove("User");
+            ModelState.Remove("UserId");
             if (ModelState.IsValid)
             {
+                ApplicationUser user = await GetUserAsync();
+                recipe.UserId = user.Id;
                 try
                 {
                     _context.Update(recipe);
@@ -177,6 +178,7 @@ namespace ThePerfectBatch.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Ingredients"] = new SelectList(_context.Ingredients, "IngredientId", "Label", recipe.Ingredients);
             return View(recipe);
         }
         [Authorize]
