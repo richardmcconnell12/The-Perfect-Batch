@@ -36,7 +36,7 @@ body {
     }
 }
 
-.form-row {
+/*.form-row {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -45,4 +45,4 @@ body {
 
 .form-group {
     flex-basis: 20%;
-}
+}*/
