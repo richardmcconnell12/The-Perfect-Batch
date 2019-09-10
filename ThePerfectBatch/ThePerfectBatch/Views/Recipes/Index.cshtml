@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<ThePerfectBatch.Models.Recipe>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -46,17 +50,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                 <td style="display: flex; flex-direction: column;">
-                @foreach (var ing in item.Ingredients)
-                {
+                <td style="display: flex; flex-direction: column;">
+                    @foreach (var ing in item.Ingredients)
+                    {
                         <ul>
                             <li>
-                            @(ing.Quantity)
-                            @(ing.Name)
+                                @(ing.Quantity)
+                                @(ing.Name)
                             </li>
                         </ul>
-                }
-                 </td>
+                    }
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateCreated)
                 </td>
@@ -66,11 +70,23 @@
                 <td>
                     <img width="50" height="50" src="~/@Url.Content(item.Image)" />
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.RecipeId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.RecipeId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.RecipeId">Delete</a>
-                </td>
+
+                @{ if (UserManager.GetUserAsync(User).Result.Id == item.UserId)
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.RecipeId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.RecipeId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.RecipeId">Delete</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.RecipeId">Details</a>
+                            @*<a asp-action="Delete" asp-route-id="@item.RecipeId">Delete</a>*@
+                        </td>
+                    }
+                }
             </tr>
         }
     </tbody>
