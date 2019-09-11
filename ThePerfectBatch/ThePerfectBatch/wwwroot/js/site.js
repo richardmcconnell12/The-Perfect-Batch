@@ -4,9 +4,10 @@
 // Write your JavaScript code.
 var formInput = document.getElementsByClassName("form-row");
 
+
+
 document.getElementById("add-ingredient").addEventListener("click", function () {
-    console.log("click");
-    var elements = document.getElementById("ingredient-input");
+    var elements = document.querySelectorAll(".ingredient-item");
     var count = elements.length;
 
     var newIngredientLabel = document.createElement("label");
@@ -15,37 +16,36 @@ document.getElementById("add-ingredient").addEventListener("click", function () 
     var newIngredientInput = document.createElement("input");
     var newQuantityInput = document.createElement("input");
 
-    newIngredientLabel.setAttribute("class", "control-label");
-    newIngredientLabel.setAttribute("id", "name-input");
-    newQuantityLabel.setAttribute("class", "control-label");
-    newQuantityLabel.setAttribute("id", "quantity-input");
+        newIngredientLabel.setAttribute("class", "control-label");
+        newIngredientLabel.setAttribute("id", "name-label");
+        newIngredientLabel.setAttribute("for", "Ingredient_" + count + "__Name");
+        newQuantityLabel.setAttribute("class", "control-label");
+        newQuantityLabel.setAttribute("id", "quantity-label");
+        newQuantityLabel.setAttribute("for", "Ingredient_" + count + "__Quantity");
 
 
-    newIngredientLabel.innerHTML = "Name";
-    newQuantityLabel.innerHTML = "Quantity";
+        newIngredientLabel.innerHTML = "Name";
+        newQuantityLabel.innerHTML = "Quantity";
 
-    newIngredientInput.setAttribute("id", "Ingredient_" + count + " __Name");
-    newQuantityInput.setAttribute("id", "Quantity_" + count + "__Quantity");
+        newIngredientInput.setAttribute("class", "form-control");
+        newIngredientInput.setAttribute("id", "name-input");
+        newQuantityInput.setAttribute("class", "form-control");
+        newQuantityInput.setAttribute("id", "quantity-input");
 
-    newIngredientInput.setAttribute("class", "Ingredient");
-    newQuantityInput.setAttribute("class", "Quantity");
+        newIngredientInput.setAttribute("name", "Ingredients[" + count + "].Name");
+        newQuantityInput.setAttribute("name", "Ingredients[" + count + "].Quantity");
 
+        newIngredientInput.setAttribute("type", "text");
+        newQuantityInput.setAttribute("type", "text");
 
-    newIngredientInput.setAttribute("name", "Ingredient[" + count + "].Name");
-    newQuantityInput.setAttribute("name", "Quantity[" + count + "].Quantity");
+        var formInputDiv = document.querySelector(".form-row");
+        console.log(formInputDiv)
 
-    newIngredientInput.setAttribute("type", "text");
-    newQuantityInput.setAttribute("type", "text");
-
-    var formInputDiv = document.querySelector(".form-row");
-    console.log(formInputDiv)
-
-    formInputDiv.append(newIngredientLabel);
-    formInputDiv.append(newIngredientInput);
-    //formInputDiv.getElementsByTagName("form")[0].append(formInputDiv.createElement("br"))
-    formInputDiv.append(newQuantityLabel);
-    formInputDiv.append(newQuantityInput);
-    //document.getElementsByTagName("form")[0].append(document.createElement("br"))
+        formInputDiv.append(newIngredientLabel);
+        formInputDiv.append(newIngredientInput);
+        formInputDiv.append(newQuantityLabel);
+        formInputDiv.append(newQuantityInput);
+   
 
 
 })

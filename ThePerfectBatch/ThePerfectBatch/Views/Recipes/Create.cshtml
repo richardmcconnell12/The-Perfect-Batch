@@ -24,7 +24,7 @@
             <div class="form-row">
                 @for (var i = 0; i < Model.Ingredients.Count; i++)
                 {
-                    <div class="form-group" style="display: flex; flex-direction: row;">       
+                    <div class="form-group ingredient-item" style="display: flex; flex-direction: row;">       
                         <label asp-for="Ingredients[i].Name" class="control-label" id="name-label"></label>
                         <input asp-for="Ingredients[i].Name" class="form-control" id="name-input" style="margin-right: 15px; "/>
                         <span asp-validation-for="Ingredients[i].Name" class="text-danger" id="name-span"></span>

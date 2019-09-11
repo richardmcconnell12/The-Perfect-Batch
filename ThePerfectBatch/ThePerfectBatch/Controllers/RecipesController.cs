@@ -27,18 +27,6 @@ namespace ThePerfectBatch.Controllers
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
-        //[HttpGet]
-        //public IActionResult IngredientForm()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public IActionResult IngredientForm(Ingredient Ingredients)
-        //{
-        //    return View(Ingredients);
-        //}
-
         // GET: Recipes
         public async Task<IActionResult> Index(string recipe)
         {
