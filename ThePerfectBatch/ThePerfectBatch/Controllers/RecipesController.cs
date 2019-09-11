@@ -68,17 +68,11 @@ namespace ThePerfectBatch.Controllers
             var recipe = new Recipe();
             var ingredient1 = new Ingredient();
             var ingredient2 = new Ingredient();
-            var ingredient3 = new Ingredient();
-            var ingredient4 = new Ingredient();
-
 
             var ingredientsList = new List<Ingredient>();
      
             ingredientsList.Add(ingredient1);
             ingredientsList.Add(ingredient2);
-            ingredientsList.Add(ingredient3);
-            ingredientsList.Add(ingredient4);
-
 
             recipe.Ingredients = ingredientsList; 
             return View(recipe);
