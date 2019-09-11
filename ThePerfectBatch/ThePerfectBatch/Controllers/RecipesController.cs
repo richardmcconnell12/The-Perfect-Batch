@@ -27,6 +27,18 @@ namespace ThePerfectBatch.Controllers
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
+        //[HttpGet]
+        //public IActionResult IngredientForm()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public IActionResult IngredientForm(Ingredient Ingredients)
+        //{
+        //    return View(Ingredients);
+        //}
+
         // GET: Recipes
         public async Task<IActionResult> Index(string recipe)
         {
@@ -68,27 +80,17 @@ namespace ThePerfectBatch.Controllers
             var recipe = new Recipe();
             var ingredient1 = new Ingredient();
             var ingredient2 = new Ingredient();
-            //var ingredient3 = new Ingredient();
-            //var ingredient4 = new Ingredient();
-            //var ingredient5 = new Ingredient();
-            //var ingredient6 = new Ingredient();
-            //var ingredient7 = new Ingredient();
-            //var ingredient8 = new Ingredient();
-            //var ingredient9 = new Ingredient();
-            //var ingredient10 = new Ingredient();
+            var ingredient3 = new Ingredient();
+            var ingredient4 = new Ingredient();
+
 
             var ingredientsList = new List<Ingredient>();
      
             ingredientsList.Add(ingredient1);
             ingredientsList.Add(ingredient2);
-            //ingredientsList.Add(ingredient3);
-            //ingredientsList.Add(ingredient4);
-            //ingredientsList.Add(ingredient5);
-            //ingredientsList.Add(ingredient6);
-            //ingredientsList.Add(ingredient7);
-            //ingredientsList.Add(ingredient8);
-            //ingredientsList.Add(ingredient9);
-            //ingredientsList.Add(ingredient10);
+            ingredientsList.Add(ingredient3);
+            ingredientsList.Add(ingredient4);
+
 
             recipe.Ingredients = ingredientsList; 
             return View(recipe);
