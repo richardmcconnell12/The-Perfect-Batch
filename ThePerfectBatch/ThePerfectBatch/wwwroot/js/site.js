@@ -44,7 +44,18 @@ document.getElementById("add-ingredient").addEventListener("click", function () 
         formInputDiv.append(newIngredientLabel);
         formInputDiv.append(newIngredientInput);
         formInputDiv.append(newQuantityLabel);
-        formInputDiv.append(newQuantityInput);
+    formInputDiv.append(newQuantityInput);
+
+    var div = document.createElement("div");
+    div.setAttribute("class", "row");
+    var div2 = document.createElement("div");
+    div2.setAttribute("class", "col-md-6");
+
+    formInputDiv.append(div);
+    formInputDiv.append(div2);
+
+
+
    
 
 
