@@ -103,8 +103,6 @@ namespace ThePerfectBatch.Controllers
             ModelState.Remove("UserId");
             if (ModelState.IsValid)
             {
-                //ApplicationUser user = await GetUserAsync();
-                //recipe.UserId = user.Id;
                 _context.Add(recipe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -116,11 +114,13 @@ namespace ThePerfectBatch.Controllers
         // GET: Recipes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var user = await GetUserAsync();
             var recipeWithIngredients = await _context.Recipe
                 .Include(r => r.Ingredients)
                 .Include(u => u.User)
                 .FirstOrDefaultAsync(m => m.RecipeId == id);
-            if (recipeWithIngredients == null)
+
+            if (recipeWithIngredients == null || user.Id != recipeWithIngredients.UserId)
             {
                 return NotFound();
             }
@@ -169,14 +169,12 @@ namespace ThePerfectBatch.Controllers
         // GET: Recipes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+            var user = await GetCurrentUserAsync();
             var recipe = await _context.Recipe
+                .Include(r => r.RecipeType)
                 .FirstOrDefaultAsync(m => m.RecipeId == id);
-            if (recipe == null)
+
+            if (recipe == null || user.Id != recipe.UserId)
             {
                 return NotFound();
             }

@@ -16,6 +16,8 @@ namespace ThePerfectBatch.Models
         [Display(Name = "Recipe Type")]
         public int RecipeTypeId { get; set; }
 
+        public virtual RecipeType RecipeType { get; set; }
+
         [Display(Name = "Meal")]
         public string Name { get; set; }
 
