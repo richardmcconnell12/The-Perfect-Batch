@@ -35,6 +35,9 @@ namespace ThePerfectBatch.Models
 
         public string Image { get; set; }
 
+        public string Instructions { get; set; }
+
         public virtual List<Ingredient> Ingredients { get; set; }
+
     }
 }

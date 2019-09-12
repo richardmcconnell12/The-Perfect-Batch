@@ -24,13 +24,25 @@
             <div class="form-row">
                 @for (var i = 0; i < Model.Ingredients.Count; i++)
                 {
-                    <div class="form-group ingredient-item" style="display: flex; flex-direction: row;">       
-                        <label asp-for="Ingredients[i].Name" class="control-label" id="name-label"></label>
-                        <input asp-for="Ingredients[i].Name" class="form-control" id="name-input" style="margin-right: 15px; "/>
-                        <span asp-validation-for="Ingredients[i].Name" class="text-danger" id="name-span"></span>
-                        <label asp-for="Ingredients[i].Quantity" class="control-label" id="quantity-label"></label>
-                        <input asp-for="Ingredients[i].Quantity" class="form-control" id="quantity-input"/>
-                        <span asp-validation-for="Ingredients[i].Quantity" class="text-danger" id="quantity-span"></span>
+                    <div class="form-group ingredient-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label asp-for="Ingredients[i].Name" class="control-label" id="name-label"></label>
+                                <input asp-for="Ingredients[i].Name" class="form-control" id="name-input" style="margin-right: 15px; " />
+                                <span asp-validation-for="Ingredients[i].Name" class="text-danger" id="name-span"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Ingredients[i].Quantity" class="control-label" id="quantity-label"></label>
+                                <input asp-for="Ingredients[i].Quantity" class="form-control" id="quantity-input" />
+                                <span asp-validation-for="Ingredients[i].Quantity" class="text-danger" id="quantity-span"></span>
+                            </div>
+                            @*<div class="col-md-6">
+                                <label asp-for="Instructions" class="control-label" id="instructions-label"></label>
+                                <textarea asp-for="Instructions" class="form-control" id="instructions-input"/>
+                                <span asp-validation-for="Instructions" class="text-danger" id="instructions-span"></span>
+                            </div>*@
+                        </div>
+                        
                     </div>
                 }
             </div>

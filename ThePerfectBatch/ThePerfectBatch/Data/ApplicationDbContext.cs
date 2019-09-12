@@ -80,7 +80,8 @@ namespace ThePerfectBatch.Data
                     UserId = user.Id,
                     Name = "French Toast",
                     Image = "images/FrenchToast.jpg",
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    Instructions = "1. Beat egg, vanilla and cinnamon in shallow dish. Stir in milk. 2. Dip bread in egg mixture, turning to coat both sides evenly. 3. Cook bread slices on lightly greased nonstick griddle or skillet on medium heat until browned on both sides."
                 },
                 new Recipe()
                 {
@@ -90,7 +91,8 @@ namespace ThePerfectBatch.Data
                     Name = "Crepes",
                     Image = "images/ChickpeaCrepe.jpg",
                     DateCreated = DateTime.Now,
-
+                    Instructions = "1. In a blender, combine the garbanzo bean flour, water, salt and garlic powder. Blend on high until smooth. Allow to sit while you heat the skillet. " +
+                    "2. Lightly grease a large non-stick skillet and warm over medium-high heat. Pour in 1/4th of the batter at a time and cook until the edges start to bubble, about 3 minutes. Carefully flip and cook the opposite side until firm. Continue this step until you have 4 crepes. 3. Top each crepe with hummus, avocado, carrots, and 50/50 mixed greens. Serve with ranch dressing and enjoy!"
                 },
                 new Recipe()
                 {
@@ -99,7 +101,8 @@ namespace ThePerfectBatch.Data
                     UserId = user.Id,
                     Name = "Grilled Cheese",
                     Image = "images/GrilledCheese.jpg",
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    Instructions = "Preheat skillet over medium heat. Generously butter one side of a slice of bread. Place bread butter-side-down onto skillet bottom and add 1 slice of cheese. Butter a second slice of bread on one side and place butter-side-up on top of sandwich. Grill until lightly browned and flip over; continue grilling until cheese is melted. Repeat with remaining 2 slices of bread, butter and slice of cheese."
                 },
                 new Recipe()
                 {
@@ -108,7 +111,8 @@ namespace ThePerfectBatch.Data
                     UserId = user.Id,
                     Name = "Chicken Parmesean",
                     Image = "images/ChickenParm.jpg",
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    Instructions = "1. Preheat an oven to 450 degrees F (230 degrees C). 2. Place chicken breasts between two sheets of heavy plastic (resealable freezer bags work well) on a solid, level surface. Firmly pound chicken with the smooth side of a meat mallet to a thickness of 1/2-inch. Season chicken thoroughly with salt and pepper. 3. Beat eggs in a shallow bowl and set aside. 4. Mix bread crumbs and 1/2 cup Parmesan cheese in a separate bowl, set aside. 5. Place flour in a sifter or strainer; sprinkle over chicken breasts, evenly coating both sides. 6. Dip flour coated chicken breast in beaten eggs. Transfer breast to breadcrumb mixture, pressing the crumbs into both sides. Repeat for each breast. Set aside breaded chicken breasts for about 15 minutes. 7. Heat 1 cup olive oil in a large skillet on medium-high heat until it begins to shimmer. Cook chicken until golden, about 2 minutes on each side. The chicken will finish cooking in the oven. 8. Place chicken in a baking dish and top each breast with about 1/3 cup of tomato sauce. Layer each chicken breast with equal amounts of mozzarella cheese, fresh basil, and provolone cheese. Sprinkle 1 to 2 tablespoons of Parmesan cheese on top and drizzle with 1 tablespoon olive oil. 9. Bake in the preheated oven until cheese is browned and bubbly, and chicken breasts are no longer pink in the center, 15 to 20 minutes. An instant-read thermometer inserted into the center should read at least 165 degrees F (74 degrees C)."
                 },
                 new Recipe()
                 {
@@ -117,7 +121,8 @@ namespace ThePerfectBatch.Data
                     UserId = user.Id,
                     Name = "Chocolate Chip Cookies",
                     Image = "images/ChocolateChipCookie.jpg",
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    Instructions = "1. Preheat oven to 350 degrees F (175 degrees C). 2. Cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water. Add to batter along with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans. 3. Bake for about 10 minutes in the preheated oven, or until edges are nicely browned."
                 }
             );
 
