@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label" id="ingredient-label"></label>
-                <input asp-for="Name" class="form-control" id="ingredient-input"/>
+                <input asp-for="Name" class="form-control" id="ingredient-input" />
                 <span asp-validation-for="Name" class="text-danger" id="ingredient-span"></span>
             </div>
             <div class="form-row">
@@ -36,25 +36,24 @@
                                 <input asp-for="Ingredients[i].Quantity" class="form-control" id="quantity-input" />
                                 <span asp-validation-for="Ingredients[i].Quantity" class="text-danger" id="quantity-span"></span>
                             </div>
-                            @*<div class="col-md-6">
-                                <label asp-for="Instructions" class="control-label" id="instructions-label"></label>
-                                <textarea asp-for="Instructions" class="form-control" id="instructions-input"/>
-                                <span asp-validation-for="Instructions" class="text-danger" id="instructions-span"></span>
-                            </div>*@
                         </div>
-                        
                     </div>
                 }
             </div>
             <div class="form-group">
+                <label asp-for="Instructions" class="control-label" id="instructions-label"></label>
+                <textarea asp-for="Instructions" class="form-control" id="instructions-input"></textarea>
+                <span asp-validation-for="Instructions" class="text-danger" id="instructions-span"></span>
+            </div>
+            <div class="form-group">
                 <div class="col-md-10">
                     <p>Upload an image of your recipe here:</p>
-                    <input type="file" name="file" id="file"/>
+                    <input type="file" name="file" id="file" />
                 </div>
             </div>
             <div class="form-group">
-                <input type="button" value="Add Ingredient" class="btn btn-default" id="add-ingredient"/>
-                <input type="submit" value="Create" class="btn btn-default"/>
+                <input type="button" value="Add Ingredient" class="btn btn-default" id="add-ingredient" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
