@@ -84,7 +84,7 @@ namespace ThePerfectBatch.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [RequestSizeLimit(5 * 1024 * 1024)]
-        public async Task<IActionResult> Create([Bind("RecipeId,RecipeTypeId,Name,DateCreated,Quantity,Image,Ingredients")] Recipe recipe, IFormFile file)
+        public async Task<IActionResult> Create([Bind("RecipeId,RecipeTypeId,Name,DateCreated,Quantity,Image,Ingredients,Instructions")] Recipe recipe, IFormFile file)
         {
             var path = Path.Combine(
                 Directory.GetCurrentDirectory(), "wwwroot",
@@ -132,7 +132,7 @@ namespace ThePerfectBatch.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RecipeId,RecipeTypeId,Name,DateCreated,Quantity,Image,Ingredients")] Recipe recipe)
+        public async Task<IActionResult> Edit(int id, [Bind("RecipeId,RecipeTypeId,Name,DateCreated,Quantity,Image,Ingredients,Instructions")] Recipe recipe)
         {
             if (id != recipe.RecipeId)
             {
