@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - ThePerfectBatch</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-spacelab.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
@@ -17,24 +17,25 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <a asp-area="" asp-controller="Recipes" asp-action="Index" class="navbar-brand">The Perfect Batch</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Recipes" asp-action="Index">Home</a></li>
-                    @*<li><a asp-area="" asp-controller="Ingredients" asp-action="Index">Ingredients</a></li>*@
-                    <li><a asp-area="" asp-controller="RecipeTypes" asp-action="Index">Recipe Type</a></li>
+            <div class="navbar-collapse collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" style="margin-right: 20px; margin-left: 20px; color: white;">
+                    <a class="nav-link" asp-area="" asp-controller="Recipes" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="RecipeTypes" asp-action="Index">Recipe Type</a>
+                    </li>
                 </ul>
-                <partial name="_LoginPartial" />
+                <a class="nav=link"<partial name="_LoginPartial" class="nav-item" /></a>
             </div>
         </div>
     </nav>
@@ -45,7 +46,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - ThePerfectBatch</p>
+            <p>&copy; 2019 - The Perfect Batch</p>
         </footer>
     </div>
 
