@@ -4,48 +4,36 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Recipe</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Ingredients)
-        </dt>
-        @foreach (var ing in Model.Ingredients)
-        {
-            <dd>
-                @(ing.Quantity)
-                @(ing.Name)
-            </dd>
-        }
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd>
-            <img width="100" height="100" src="~/@Url.Content(Model.Image)" />
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.User.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Instructions)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Instructions)
-        </dd>
-    </dl>
+
+<div class="row-no-gutters">
+    <div class="jumbotron">
+        <img class="img-thumbnail" src="~/@Url.Content(Model.Image)" />
+    </div>
+    @foreach (var ing in Model.Ingredients)
+    {
+        <p class="lead">
+            @(ing.Quantity)
+            @(ing.Name)
+        </p>
+    }
+    <br />
+    <h3 class="lead">
+        @Html.DisplayNameFor(model => model.Instructions)
+    </h3>
+    <p class="lead">
+        @Html.DisplayFor(model => model.Instructions)
+    </p>
+    <br />
+    <br />
+    <p class="my-2">
+        @Html.DisplayFor(model => model.User.Email)
+    </p>
+    <p>
+        @Html.DisplayFor(model => model.DateCreated)
+    </p>
 </div>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model.RecipeId">Edit</a> |
     <a asp-action="Index">Back to List</a>
