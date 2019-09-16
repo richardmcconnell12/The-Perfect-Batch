@@ -7,32 +7,37 @@
 
 
 <div class="row-no-gutters">
-    <div class="jumbotron">
+    <div class="jumbotron-fluid">
         <img class="img-thumbnail" src="~/@Url.Content(Model.Image)" />
     </div>
-    @foreach (var ing in Model.Ingredients)
-    {
-        <p class="lead">
-            @(ing.Quantity)
-            @(ing.Name)
-        </p>
-    }
-    <br />
-    <h3 class="lead">
-        @Html.DisplayNameFor(model => model.Instructions)
-    </h3>
-    <p class="lead">
-        @Html.DisplayFor(model => model.Instructions)
-    </p>
-    <br />
-    <br />
-    <p class="my-2">
-        @Html.DisplayFor(model => model.User.Email)
-    </p>
-    <p>
-        @Html.DisplayFor(model => model.DateCreated)
-    </p>
+    <div class="recipe-content">
+        @foreach (var ing in Model.Ingredients)
+        {
+            <ul class="lead">
+                <li>@(ing.Quantity)
+                @(ing.Name)</li>
+            </ul>
+        }
+    </div>
 </div>
+        <br />
+        <h3 class="lead">
+            @Html.DisplayNameFor(model => model.Instructions)
+        </h3>
+        <p class="lead">
+            @Html.DisplayFor(model => model.Instructions)
+        </p>
+    <div>
+        <br />
+        <br />
+        <p class="my-2">
+            @Html.DisplayFor(model => model.User.Email)
+        </p>
+        <p>
+            @Html.DisplayFor(model => model.DateCreated)
+        </p>
+    </div>
+
 
 <div>
     <a asp-action="Edit" asp-route-id="@Model.RecipeId">Edit</a> |
