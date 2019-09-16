@@ -35,13 +35,20 @@ body {
     }
 }
 
-/*.form-row {
+.row-no-gutters {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
-    justify-content: left;
+    flex-wrap: wrap;
 }
 
-.form-group {
-    flex-basis: 20%;
-}*/
+.recipe-content {
+    margin-top: 12px;
+    margin-left: 150px;
+}
+
+.img-thumbnail {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 400px;
+    height: 450px;
+}
