@@ -14,10 +14,12 @@
         @foreach (var ing in Model.Ingredients)
         {
             <ul class="lead">
-                <li>@(ing.Quantity)
-                @(ing.Name)</li>
-            </ul>
-        }
+                <li>
+                    @(ing.Quantity)
+                @(ing.Name)
+            </li>
+        </ul>
+    }
     </div>
 </div>
         <br />
@@ -30,12 +32,9 @@
     <div>
         <br />
         <br />
-        <p class="my-2">
-            @Html.DisplayFor(model => model.User.Email)
-        </p>
-        <p>
-            @Html.DisplayFor(model => model.DateCreated)
-        </p>
+        <label class="my-2">
+            Made by @Html.DisplayFor(model => model.User.Email) on  @Html.DisplayFor(model => model.DateCreated)
+        </label>
     </div>
 
 
