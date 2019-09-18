@@ -24,7 +24,7 @@ document.getElementById("add-ingredient").addEventListener("click", function () 
     newQuantityLabel.setAttribute("for", "Ingredient_" + count + "__Quantity");
 
 
-    newIngredientLabel.innerHTML = "Name";
+    newIngredientLabel.innerHTML = "Ingredient";
     newQuantityLabel.innerHTML = "Quantity";
 
     newIngredientInput.setAttribute("class", "form-control");

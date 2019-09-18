@@ -13,6 +13,8 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="RecipeId" />
+            <input type="hidden" asp-for="RecipeTypeId" />
+            <input type="hidden" asp-for="Image" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -21,17 +23,19 @@
             <div class="form-row">
                 @for (var i = 0; i < Model.Ingredients.Count; i++)
                 {
-                    <div class="form-group ingredient-item" style="display: flex; flex-direction: row;">
-                        <label asp-for="Ingredients[i].Name" class="control-label"></label>
-                        <input asp-for="Ingredients[i].Name" class="form-control" style="margin-right: 15px; " />
-                        <span asp-validation-for="Ingredients[i].Name" class="text-danger"></span>
-                        <label asp-for="Ingredients[i].Quantity" class="control-label"></label>
-                        <input asp-for="Ingredients[i].Quantity" class="form-control" />
-                        <span asp-validation-for="Ingredients[i].Quantity" class="text-danger"></span>
-                        <input type="hidden" asp-for="Ingredients[i].IngredientId" />
-                        <input type="hidden" asp-for="Ingredients[i].RecipeId" />
-                        <input type="hidden" asp-for="RecipeTypeId" />
-                        <input type="hidden" asp-for="Image" />
+                    <div class="form-group ingredient-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label asp-for="Ingredients[i].Name" class="control-label" id="name-label"></label>
+                                <input asp-for="Ingredients[i].Name" class="form-control" id="name-input" style="margin-right: 15px; " />
+                                <span asp-validation-for="Ingredients[i].Name" class="text-danger" id="name-span"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Ingredients[i].Quantity" class="control-label" id="quantity-label"></label>
+                                <input asp-for="Ingredients[i].Quantity" class="form-control" id="quantity-input" />
+                                <span asp-validation-for="Ingredients[i].Quantity" class="text-danger" id="quantity-span"></span>
+                            </div>
+                        </div>
                     </div>
                 }
             </div>

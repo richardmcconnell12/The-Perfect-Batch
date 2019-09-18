@@ -14,6 +14,7 @@ namespace ThePerfectBatch.Models
         public int RecipeId { get; set; }
 
         [Required]
+        [Display(Name = "Ingredient")]
         public string Name { get; set; }
 
         [Required]
