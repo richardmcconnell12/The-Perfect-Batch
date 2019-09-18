@@ -62,8 +62,4 @@ document.getElementById("add-ingredient").addEventListener("click", function () 
     rowDiv.append(quantityDiv);
 
     formContainer.append(formGroupDiv);
-
-
-    
-
 });
