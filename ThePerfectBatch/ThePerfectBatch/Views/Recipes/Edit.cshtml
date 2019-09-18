@@ -29,6 +29,7 @@
                                 <label asp-for="Ingredients[i].Name" class="control-label" id="name-label"></label>
                                 <input asp-for="Ingredients[i].Name" class="form-control" id="name-input" style="margin-right: 15px; " />
                                 <span asp-validation-for="Ingredients[i].Name" class="text-danger" id="name-span"></span>
+                                <input type="hidden" asp-for="Ingredients[i].IngredientId" />
                             </div>
                             <div class="col-md-6">
                                 <label asp-for="Ingredients[i].Quantity" class="control-label" id="quantity-label"></label>
