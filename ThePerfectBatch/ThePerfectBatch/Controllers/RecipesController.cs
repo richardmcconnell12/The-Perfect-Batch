@@ -140,7 +140,6 @@ namespace ThePerfectBatch.Controllers
             }
             ModelState.Remove("User");
             ModelState.Remove("UserId");
-            ModelState.Remove("Ingredients");
             if (ModelState.IsValid)
             {
                 ApplicationUser user = await GetUserAsync();
