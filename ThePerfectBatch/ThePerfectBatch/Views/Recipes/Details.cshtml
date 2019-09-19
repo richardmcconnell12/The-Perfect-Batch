@@ -1,4 +1,8 @@
 ﻿@model ThePerfectBatch.Models.Recipe
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -16,29 +20,36 @@
             <ul class="lead">
                 <li>
                     @(ing.Quantity)
-                @(ing.Name)
+                    @(ing.Name)
                 </li>
             </ul>
-    }
+        }
     </div>
 </div>
-        <br />
-        <h3 class="lead">
-            @Html.DisplayNameFor(model => model.Instructions)
-        </h3>
-        <p class="lead">
-            @Html.DisplayFor(model => model.Instructions)
-        </p>
-    <div>
-        <br />
-        <br />
-        <label class="my-2">
-            Made by @Html.DisplayFor(model => model.User.Email) on  @Html.DisplayFor(model => model.DateCreated)
-        </label>
-    </div>
-
-
+<br />
+<h3 class="lead">
+    @Html.DisplayNameFor(model => model.Instructions)
+</h3>
+<p class="lead">
+    @Html.DisplayFor(model => model.Instructions)
+</p>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.RecipeId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <br />
+    <br />
+    <label class="my-2">
+        Made by @Html.DisplayFor(model => model.User.Email) on  @Html.DisplayFor(model => model.DateCreated)
+    </label>
 </div>
+
+@{ if (UserManager.GetUserAsync(User).Result?.Id == Model.UserId)
+    {
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.RecipeId">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    }
+    else
+    {
+        <a asp-action="Index">Back to List</a>
+    }
+}
