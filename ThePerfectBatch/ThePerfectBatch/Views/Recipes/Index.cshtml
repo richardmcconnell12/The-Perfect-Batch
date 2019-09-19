@@ -24,7 +24,7 @@
     <div class="d-flex flex-wrap">
         @foreach (var item in Model)
         {
-         <div id="@item.RecipeId" class="card gridCard m-3">
+         <div id="@item.RecipeId" class="card gridCard m-2">
             <div class="card-body">
                 <img class="card-img-top" style="width:300px; height:350px;" src="~/@Url.Content(item.Image)" />
                 <h3 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h3>
