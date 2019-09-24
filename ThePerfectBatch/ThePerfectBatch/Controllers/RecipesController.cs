@@ -41,6 +41,15 @@ namespace ThePerfectBatch.Controllers
                 return View(RecipeWithIngredients);
         }
 
+        [Authorize]
+        public async Task<IActionResult> MyRecipes()
+        {
+            var user = await GetUserAsync();
+            var userRecipes = _context.Recipe
+                .Where(r => r.UserId == user.Id);
+            return View(await userRecipes.ToListAsync());
+        }
+
         // GET: Recipes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
